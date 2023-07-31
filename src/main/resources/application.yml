@@ -1,0 +1,31 @@
+## server port config
+#server:
+#  port: 8080
+
+# oracle driver config
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: C##GREEDY
+    password: GREEDY
+    hikari:
+      auto-commit: false
+
+  # jpa config
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    database: oracle
+    properties:
+      hibernate:
+        '[format_sql]': true
+
+## static파일 개발 시 서버 재시작하지 않아도 수정내용이 반영되도록 하는 설정
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: false
+    freemarker:
+      cache: false
