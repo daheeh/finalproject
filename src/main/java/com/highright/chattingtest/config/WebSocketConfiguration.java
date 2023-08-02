@@ -1,25 +1,25 @@
 package com.highright.chattingtest.config;
 
-import com.highright.chattingtest.handler.WebSocketHandler;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.*;
 
-@RequiredArgsConstructor
+
 @Configuration
-@EnableWebSocket
-public class WebSocketConfiguration implements WebSocketConfigurer {
+@EnableWebSocketMessageBroker
+public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
 
-    private final WebSocketHandler webSocketHandler;
+    // STOMP를 사용하기 위해 @EnableWebSocketMessageBroker선언
+
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketHandler, "/ws/chat").setAllowedOrigins("*");
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/sub");
+        config.setApplicationDestinationPrefixes("/pub");
     }
 
-    // hanlder를 이용하여 WebSocket을 활성화하기 위한 Config파일을 작성한다.
-    // WebSocket에 접속하기 위한 endpoint는 /ws/chat으로 설정하고 도메인이
-    // 다른 서버에서도 접속 가능하도록 CORS: setAllowedOrgins("*)설정 추가!
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/ws-stomp").setAllowedOrigins("*").withSockJS();
+    }
 
 }

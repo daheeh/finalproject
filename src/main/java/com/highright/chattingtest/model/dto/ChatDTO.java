@@ -11,7 +11,7 @@ public class ChatDTO {
 
     // 메세지 타입 : 입장 메세지
     public enum MessageType{
-        ENTER, TALK
+        ENTER, JOIN, TALK
     }
 
     private MessageType type; // 메세지 타입
