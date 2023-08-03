@@ -15,29 +15,30 @@ public class ChatRoomRepository {
 
     private Map<String, ChatRoomDTO> chatRoomMap;
 
-    //채팅방 정보 담을 Map
+    private Map<String, ChatRoomDTO> chatRoomDTOMap;
+
     @PostConstruct
-    public void init() {
-        chatRoomMap = new LinkedHashMap<>();
+    private void init(){
+        chatRoomDTOMap = new LinkedHashMap<>();
     }
 
-    public List<ChatRoomDTO> findAllRoom(){
-        // 채팅방 생성순서 최근 순으로 반환
-        List chatRooms = new ArrayList<>(chatRoomMap.values());
-        Collections.reverse(chatRooms);
-        return chatRooms;
+    public List<ChatRoomDTO> findAllRooms(){
+        //채팅방 생성 순서 최근 순으로 반환
+        List<ChatRoomDTO> result = new ArrayList<>(chatRoomDTOMap.values());
+        Collections.reverse(result);
+
+        return result;
     }
 
-    // 채팅방 이름으로 조회
     public ChatRoomDTO findRoomById(String id){
-        return chatRoomMap.get(id);
+        return chatRoomDTOMap.get(id);
     }
 
-    // 채팅방 생성
-    public ChatRoomDTO createChatRoom(String name) {
-        ChatRoomDTO chatRoom = ChatRoomDTO.create(name);
-        chatRoomMap.put(chatRoom.getRoomId(), chatRoom);
-        return  chatRoom;
+    public ChatRoomDTO createChatRoomDTO(String name){
+        ChatRoomDTO room = ChatRoomDTO.create(name);
+        chatRoomDTOMap.put(room.getRoomId(), room);
+
+        return room;
     }
 
 }

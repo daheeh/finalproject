@@ -29,3 +29,9 @@ spring:
       enabled: false
     freemarker:
       cache: false
+
+### View Resolver 설정
+  mvc:
+    view:
+      prefix: /WEB-INF/templates/
+      suffix: .html
