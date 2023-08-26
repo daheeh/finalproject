@@ -1,6 +1,6 @@
 ## server port config
-#server:
-#  port: 8080
+server:
+  port: 8080
 
 # oracle driver config
 spring:
@@ -31,7 +31,22 @@ spring:
       cache: false
 
 ### View Resolver 설정
-  mvc:
-    view:
-      prefix: /WEB-INF/templates/
-      suffix: .html
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/templates/
+#      suffix: .html
+
+# application.properties
+  freemarker:
+    template-loader-path: classpath:/templates/
+    suffix: .ftl
+
+# debugging
+    logging:
+      level:
+        org:
+          springframework:
+            web:
+              servlet:
+                view:
+                  freemarker: DEBUG

@@ -2,6 +2,8 @@ package com.highright.chattingtest.model.dto;
 
 import lombok.*;
 
+import java.awt.*;
+
 // 채팅 메세지를 주고받기 위한 DTO
 @AllArgsConstructor
 @NoArgsConstructor
@@ -9,14 +11,14 @@ import lombok.*;
 @Setter
 public class ChatDTO {
 
-    // 메세지 타입 : 입장 메세지
-//    public enum MessageType{
-//        ENTER, JOIN, TALK
-//    }
+    // 메시지 타입 : 입장, 채팅
+    public enum MessageType {
+        ENTER, TALK
+    }
 
-//    private MessageType type; // 메세지 타입
-    private String roomId; // 방 번호
-    private String Sender; // 채팅 보낸 사람
-    private String message; // 메세지
-//    private String time; // 채팅 보낸 시간
+    private MessageType type; // 메시지 타입
+    private String roomId; // 방번호
+    private String sender; // 메시지 보낸사람
+    private String message; // 메시지
+    private String time; // 채팅 보낸 시간
 }
