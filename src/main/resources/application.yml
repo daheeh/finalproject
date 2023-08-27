@@ -6,11 +6,9 @@ server:
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521:xe
-    username: C##GREEDY
-    password: GREEDY
-    hikari:
-      auto-commit: false
+    url: jdbc:oracle:thin:@oracle.coffit.today:1521:XE
+    username: C##HIGHCARE
+    password: HIGHCARE
 
   # jpa config
   jpa:
@@ -30,16 +28,10 @@ spring:
     freemarker:
       cache: false
 
-### View Resolver 설정
-#  mvc:
-#    view:
-#      prefix: /WEB-INF/templates/
-#      suffix: .html
-
-# application.properties
-  freemarker:
-    template-loader-path: classpath:/templates/
+  thymeleaf:
+    prefix: classpath:/templates/
     suffix: .ftl
+    cache: false
 
 # debugging
     logging:
@@ -50,3 +42,9 @@ spring:
               servlet:
                 view:
                   freemarker: DEBUG
+
+#redis
+  redis:
+    host: localhost
+    port: 6379
+
